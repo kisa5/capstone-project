@@ -1,3 +1,15 @@
+import React from "react";
+import ProjectItem from "components/ProjectItem";
+
 export default function HomePage() {
-  return <h1>Hello from Next.js</h1>;
+  return (
+    <>
+      <header>
+        <h1>my projects</h1>
+      </header>
+      <main>
+        <ProjectItem />
+      </main>
+    </>
+  );
 }
