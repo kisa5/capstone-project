@@ -28,7 +28,7 @@ const ProjectItem = styled.li`
   padding: 10px;
   margin: 5px;
   list-style-type: none;
-  width: 90%;
+  width: 85%;
   border-radius: 5px;
   font-size: 15;
 `;
