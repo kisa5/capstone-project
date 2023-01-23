@@ -1,5 +1,5 @@
 import ProjectCard from "@/components/ProjectCard";
-import Logo from "@/components/svg/logo.svg";
+import Logo from "@/components/svg/Logo.svg";
 import styled from "styled-components";
 
 export default function HomePage() {
