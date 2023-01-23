@@ -1,5 +1,5 @@
 import React from "react";
-import ProjectItem from "components/ProjectItem";
+import ProjectCard from "components/ProjectItem";
 import Logo from "components/svg/logo.svg";
 import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
@@ -13,7 +13,7 @@ export default function HomePage() {
         <Title>my projects</Title>
       </Header>
       <main>
-        <ProjectItem />
+        <ProjectCard />
       </main>
     </>
   );

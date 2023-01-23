@@ -1,5 +1,5 @@
 import React from "react";
-import { titles } from "lib/db.json";
+import titles from "lib/db.json";
 import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
 
@@ -7,7 +7,7 @@ export default function ProjectCard() {
   return (
     <>
       <ProjectList>
-        {titles.map((title) => (
+        {titles.titles.map((title) => (
           <ProjectItem key={uuidv4()}>{title.title}</ProjectItem>
         ))}
       </ProjectList>
