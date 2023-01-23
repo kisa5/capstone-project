@@ -1,4 +1,3 @@
-import React from "react";
 import ProjectCard from "@/components/ProjectCard";
 import Logo from "components/svg/logo.svg";
 import styled from "styled-components";
