@@ -3,7 +3,7 @@ import { titles } from "lib/db.json";
 import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
 
-export default function () {
+export default function ProjectCard() {
   return (
     <>
       <ProjectList>
