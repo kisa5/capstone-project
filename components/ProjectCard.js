@@ -1,13 +1,12 @@
-import titles from "lib/db.json";
-import { v4 as uuidv4 } from "uuid";
+import { projects } from "@/lib/db.js";
 import styled from "styled-components";
 
 export default function ProjectCard() {
   return (
     <>
       <ProjectList>
-        {titles.titles.map((title) => (
-          <ProjectItem key={uuidv4()}>{title.title}</ProjectItem>
+        {projects.map((project) => (
+          <ProjectItem key={project.id}>{project.title}</ProjectItem>
         ))}
       </ProjectList>
     </>
