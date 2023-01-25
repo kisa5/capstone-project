@@ -17,37 +17,31 @@ export default function Tasks() {
 
   return (
     <>
-      <Button>
-        <Link href="/">⬅️</Link>
-      </Button>
-      <Title>{title}</Title>
-      <TaskList>
+      <BackButton>
+        <Link href="/"> ⬅️ </Link>
+      </BackButton>
+      <StyledList>
+        <Title>{title}</Title>
         {tasks.map(({ task }) => (
           <TaskItem key={task}>{task}</TaskItem>
         ))}
-      </TaskList>
+      </StyledList>
     </>
   );
 }
 
-const Button = styled.button`
-  border-radius: 5px;
-  border: none;
-  background-color: lightgrey;
-  margin: 10px;
-  padding: 8px;
-  color: grey;
+const BackButton = styled.div`
+  margin: 5px;
 `;
 
 const Title = styled.h1`
-  position: absolute;
   top: 40px;
   left: 15px;
   font-style: bold;
   font-size: 17px;
 `;
 
-const TaskList = styled.ul`
+const StyledList = styled.ul`
   display: flex;
   position: relative;
   flex-direction: column;
