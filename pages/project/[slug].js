@@ -7,9 +7,7 @@ export default function Tasks() {
   const router = useRouter();
   const { slug } = router.query;
 
-  const projectIndex = projects.findIndex((project) => project.slug === slug);
-
-  const project = projects[projectIndex];
+  const project = projects.find((project) => project.slug === slug);
 
   if (!project) {
     return null;
