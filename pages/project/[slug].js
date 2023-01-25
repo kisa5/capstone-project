@@ -19,6 +19,9 @@ export default function Tasks() {
 
   return (
     <>
+      <button>
+        <Link href="/">⬅️</Link>
+      </button>
       <h1>{title}</h1>
       <ul>
         {tasks.map(({ task }) => (

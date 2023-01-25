@@ -1,12 +1,16 @@
 import { projects } from "@/lib/db.js";
 import styled from "styled-components";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function ProjectCard() {
   return (
     <>
       <ProjectList>
         {projects.map((project) => (
-          <ProjectItem key={project.id}>{project.title}</ProjectItem>
+          <ProjectItem key={project.id}>
+            <Link href={`/project/${project.slug}`}>{project.title}</Link>
+          </ProjectItem>
         ))}
       </ProjectList>
     </>
