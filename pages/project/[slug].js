@@ -10,7 +10,7 @@ export default function Tasks() {
   const project = projects.find((project) => project.slug === slug);
 
   if (!project) {
-    return null;
+    return <p>404 page</p>;
   }
 
   const { title, tasks } = project;
