@@ -23,7 +23,7 @@ export default function Tasks() {
       <StyledList>
         <Title>{title}</Title>
         {tasks.map(({ task }) => (
-          <TaskItem key={task}>{task}</TaskItem>
+          <TaskItem key={task.id}>{task}</TaskItem>
         ))}
       </StyledList>
     </>
