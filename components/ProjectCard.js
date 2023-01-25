@@ -5,15 +5,13 @@ import { useRouter } from "next/router";
 
 export default function ProjectCard() {
   return (
-    <>
-      <ProjectList>
-        {projects.map((project) => (
-          <ProjectItem key={project.id}>
-            <Link href={`/project/${project.slug}`}>{project.title}</Link>
-          </ProjectItem>
-        ))}
-      </ProjectList>
-    </>
+    <ProjectList>
+      {projects.map((project) => (
+        <ProjectItem key={project.id}>
+          <Link href={`/project/${project.slug}`}>{project.title}</Link>
+        </ProjectItem>
+      ))}
+    </ProjectList>
   );
 }
 

@@ -19,15 +19,50 @@ export default function Tasks() {
 
   return (
     <>
-      <button>
+      <Button>
         <Link href="/">⬅️</Link>
-      </button>
-      <h1>{title}</h1>
-      <ul>
+      </Button>
+      <Title>{title}</Title>
+      <TaskList>
         {tasks.map(({ task }) => (
-          <li key={task}>{task}</li>
+          <TaskItem key={task}>{task}</TaskItem>
         ))}
-      </ul>
+      </TaskList>
     </>
   );
 }
+
+const Button = styled.button`
+  border-radius: 5px;
+  border: none;
+  background-color: lightgrey;
+  margin: 10px;
+  padding: 8px;
+  color: grey;
+`;
+
+const Title = styled.h1`
+  position: absolute;
+  top: 40px;
+  left: 15px;
+  font-style: bold;
+  font-size: 17px;
+`;
+
+const TaskList = styled.ul`
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: start;
+  padding-left: 13px;
+`;
+
+const TaskItem = styled.li`
+  background-color: lightgrey;
+  padding: 10px;
+  margin: 5px;
+  list-style-type: none;
+  width: 85%;
+  border-radius: 5px;
+  font-size: 15;
+`;
