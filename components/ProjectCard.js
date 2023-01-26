@@ -1,16 +1,17 @@
-import titles from "lib/db.json";
-import { v4 as uuidv4 } from "uuid";
+import { projects } from "@/lib/db.js";
 import styled from "styled-components";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function ProjectCard() {
   return (
-    <>
-      <ProjectList>
-        {titles.titles.map((title) => (
-          <ProjectItem key={uuidv4()}>{title.title}</ProjectItem>
-        ))}
-      </ProjectList>
-    </>
+    <ProjectList>
+      {projects.map((project) => (
+        <ProjectItem key={project.id}>
+          <Link href={`/project/${project.slug}`}>{project.title}</Link>
+        </ProjectItem>
+      ))}
+    </ProjectList>
   );
 }
 
