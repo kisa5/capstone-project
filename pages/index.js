@@ -1,8 +1,9 @@
 import ProjectCard from "@/components/ProjectCard";
 import Logo from "@/components/svg/Logo.svg";
 import styled from "styled-components";
+import AddProject from "@/components/AddProject";
 
-export default function HomePage() {
+export default function HomePage({ project, addProject }) {
   return (
     <>
       <Header>
@@ -10,7 +11,8 @@ export default function HomePage() {
         <Title>my projects</Title>
       </Header>
       <main>
-        <ProjectCard />
+        <ProjectCard project={project} />
+        <AddProject addProject={addProject} />
       </main>
     </>
   );

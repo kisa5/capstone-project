@@ -11,13 +11,26 @@ export default function App({ Component, pageProps }) {
     setProject([projectname, ...project]);
   }
 
+  const [task, setTask] = useLocalStorageState("task", {
+    defaultValue: [],
+  });
+  function addTask(taskname) {
+    setTask([taskname, ...task]);
+  }
+
   return (
     <>
       <GlobalStyle />
       <Head>
         <title>Capstone Project</title>
       </Head>
-      <Component {...pageProps} addProject={addProject} project={project} />
+      <Component
+        {...pageProps}
+        addProject={addProject}
+        project={project}
+        addTask={addTask}
+        task={task}
+      />
     </>
   );
 }

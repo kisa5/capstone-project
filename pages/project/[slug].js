@@ -1,19 +1,11 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { projects } from "@/lib/db.js";
 import styled from "styled-components";
+import AddTask from "@/components/AddTask";
 
-export default function Tasks() {
+export default function Task({ addTask, task }) {
   const router = useRouter();
   const { slug } = router.query;
-
-  const project = projects.find((project) => project.slug === slug);
-
-  if (!project) {
-    return <p>404 page</p>;
-  }
-
-  const { title, tasks } = project;
 
   return (
     <>
@@ -21,18 +13,15 @@ export default function Tasks() {
         <Link href="/"> ⬅️ </Link>
       </BackButton>
       <StyledList>
-        <Title>{title}</Title>
-        {tasks.map(({ task }) => (
-          <TaskItem key={task.id}>{task}</TaskItem>
+        <Title>{slug}</Title>
+        {task.map((task, index) => (
+          <TaskItem key={index}>{task.task}</TaskItem>
         ))}
       </StyledList>
+      <AddTask addTask={addTask} />
     </>
   );
 }
-
-const BackButton = styled.div`
-  margin: 5px;
-`;
 
 const Title = styled.h1`
   top: 40px;
@@ -41,12 +30,17 @@ const Title = styled.h1`
   font-size: 17px;
 `;
 
+const BackButton = styled.div`
+  margin: 5px;
+`;
+
 const StyledList = styled.ul`
   display: flex;
   position: relative;
   flex-direction: column;
   align-items: start;
   padding-left: 13px;
+  margin: 0;
 `;
 
 const TaskItem = styled.li`
