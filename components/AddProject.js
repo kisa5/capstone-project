@@ -1,34 +1,56 @@
 import styled from "styled-components";
-import Link from "next/link";
-import { useRouter } from "next/router";
+export default function AddProject({ addProject }) {
+  function handleSubmit(event) {
+    event.preventDefault();
 
-export default function ProjectCard({ project }) {
-  const router = useRouter();
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+    const newData = { ...data, slug: data.title };
+    console.log(data);
+    addProject(newData);
+
+    event.target.reset();
+  }
+
   return (
-    <ProjectList>
-      {project.map((project, index) => (
-        <ProjectItem key={index}>
-          <Link href={`/project/${project.slug}`}>{project.title}</Link>
-        </ProjectItem>
-      ))}
-    </ProjectList>
+    <>
+      <Form onSubmit={handleSubmit}>
+        <label htmlFor="project"></label>
+        <ProjectInput
+          id="project"
+          type="text"
+          name="title"
+          placeholder="+ add new project"
+          required
+        />
+        <SubmitButton type="submit">add</SubmitButton>
+      </Form>
+    </>
   );
 }
 
-const ProjectList = styled.ul`
+const Form = styled.form`
   display: flex;
-  position: relative;
-  flex-direction: column;
-  align-items: start;
+  align-items: center;
   padding-left: 15px;
-  margin-bottom: 0;
 `;
 
-const ProjectItem = styled.li`
-  background-color: lightgrey;
-  padding: 10px;
-  margin: 5px;
-  list-style-type: none;
+const ProjectInput = styled.input`
   width: 85%;
+  margin: 5px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid grey;
+  font-size: 15px;
+  word-wrap: break-word;
+  word-break: break-all;
+`;
+
+const SubmitButton = styled.button`
+  position: absolute;
+  right: 16%;
+  background-color: lightgray;
+  border: none;
+  padding: 7px;
   border-radius: 5px;
 `;
