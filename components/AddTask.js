@@ -1,13 +1,15 @@
 import styled from "styled-components";
 
-export default function AddTask({ addTask }) {
+export default function AddTask({ onHandleAddTask, projectid }) {
   function handleSubmit(event) {
     event.preventDefault();
 
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-    console.log(data);
-    addTask(data);
+
+    // NEW
+    const newData = { task: data.task, id: crypto.randomUUID(), isDone: false };
+    onHandleAddTask(projectid, newData);
 
     event.target.reset();
   }

@@ -6,13 +6,13 @@ export default function AddProject({ addProject }) {
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
 
+    // NEW
     const newData = {
       ...data,
       slug: data.title,
-      id: crypto.randomUUID,
+      id: crypto.randomUUID(),
       tasks: [],
     };
-    console.log(data);
 
     addProject(newData);
 
