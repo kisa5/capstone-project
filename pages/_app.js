@@ -10,8 +10,7 @@ export default function App({ Component, pageProps }) {
   function addProject(projectname) {
     setProject([projectname, ...project]);
   }
-
-  const [task, setTask] = useLocalStorageState("task", {
+  const [task, setTask] = useLocalStorageState("newTask", {
     defaultValue: [],
   });
   function addTask(taskname) {

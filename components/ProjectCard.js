@@ -20,7 +20,8 @@ const ProjectList = styled.ul`
   position: relative;
   flex-direction: column;
   align-items: start;
-  padding-left: 13px;
+  padding-left: 15px;
+  margin-bottom: 0;
 `;
 
 const ProjectItem = styled.li`
@@ -30,5 +31,4 @@ const ProjectItem = styled.li`
   list-style-type: none;
   width: 85%;
   border-radius: 5px;
-  font-size: 15;
 `;
