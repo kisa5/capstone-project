@@ -17,8 +17,8 @@ export default function Task({ projects, onHandleAddTask }) {
       <BackButton>
         <Link href="/"> ⬅️ </Link>
       </BackButton>
-      <Title>{selectedProject.title}</Title>
       <StyledList>
+        <Title>{selectedProject.title}</Title>
         {selectedProject.tasks.map((task) => (
           <TaskItem key={task.id}>{task.task}</TaskItem>
         ))}

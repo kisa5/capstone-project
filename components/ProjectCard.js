@@ -8,9 +8,7 @@ export default function ProjectCard({ projects, onHandleAddTask }) {
   return (
     <ProjectList>
       {projects === undefined ? (
-        <ProjectItem>
-          <p>Please add a project...</p>
-        </ProjectItem>
+        <p>Please add a project...</p>
       ) : (
         projects.map((project) => (
           <ProjectItem key={project.id}>
