@@ -1,15 +1,19 @@
 import styled from "styled-components";
-
-export default function AddTask({ onHandleAddTask, projectid }) {
+export default function ProjectForm({ addProject }) {
   function handleSubmit(event) {
     event.preventDefault();
 
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
 
-    // NEW
-    const newData = { task: data.task, id: crypto.randomUUID(), isDone: false };
-    onHandleAddTask(projectid, newData);
+    const newData = {
+      ...data,
+      slug: data.title,
+      id: crypto.randomUUID(),
+      tasks: [],
+    };
+
+    addProject(newData);
 
     event.target.reset();
   }
@@ -17,12 +21,12 @@ export default function AddTask({ onHandleAddTask, projectid }) {
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        <label htmlFor="task"></label>
-        <TaskInput
-          id="task"
+        <label htmlFor="project"></label>
+        <ProjectInput
+          id="project"
           type="text"
-          name="task"
-          placeholder="+ add new task"
+          name="title"
+          placeholder="+ add new project"
           required
         />
         <SubmitButton type="submit">add</SubmitButton>
@@ -37,13 +41,15 @@ const Form = styled.form`
   padding-left: 15px;
 `;
 
-const TaskInput = styled.input`
+const ProjectInput = styled.input`
   width: 85%;
   margin: 5px;
   padding: 10px;
   border-radius: 5px;
   border: 1px solid grey;
   font-size: 15px;
+  word-wrap: break-word;
+  word-break: break-all;
 `;
 
 const SubmitButton = styled.button`

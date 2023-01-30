@@ -1,12 +1,11 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styled from "styled-components";
-import AddTask from "@/components/AddTask";
+import TaskForm from "@/components/TaskForm";
 
 export default function Task({ projects, onHandleAddTask }) {
   const router = useRouter();
   const { id } = router.query;
-  // const { isReady } = router;
 
   const selectedProject = projects.find((project) => project.id === id) ?? {
     tasks: [],
@@ -23,7 +22,7 @@ export default function Task({ projects, onHandleAddTask }) {
           <TaskItem key={task.id}>{task.task}</TaskItem>
         ))}
       </StyledList>
-      <AddTask onHandleAddTask={onHandleAddTask} projectid={id} />
+      <TaskForm onHandleAddTask={onHandleAddTask} projectid={id} />
     </>
   );
 }

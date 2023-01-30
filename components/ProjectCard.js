@@ -3,15 +3,13 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 export default function ProjectCard({ projects, onHandleAddTask }) {
-  // const router = useRouter();
-
   return (
     <ProjectList>
-      {projects === undefined ? (
+      {!projects ? (
         <p>Please add a project...</p>
       ) : (
-        projects.map((project) => (
-          <ProjectItem key={project.id}>
+        projects.map((project, index) => (
+          <ProjectItem key={index}>
             <Link href={`/project/${project.id}`}>{project.title}</Link>
           </ProjectItem>
         ))

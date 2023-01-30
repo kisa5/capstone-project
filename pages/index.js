@@ -4,7 +4,7 @@ import styled from "styled-components";
 // import internal resources
 import ProjectCard from "@/components/ProjectCard";
 import Logo from "@/components/svg/Logo.svg";
-import AddProject from "@/components/AddProject";
+import ProjectForm from "@/components/ProjectForm";
 
 export default function HomePage({ addProject, projects }) {
   return (
@@ -15,7 +15,7 @@ export default function HomePage({ addProject, projects }) {
       </Header>
       <main>
         <ProjectCard projects={projects} />
-        <AddProject addProject={addProject} />
+        <ProjectForm addProject={addProject} />
       </main>
     </>
   );

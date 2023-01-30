@@ -12,7 +12,6 @@ export default function App({ Component, pageProps }) {
   }
 
   function handleAddTask(id, newTask) {
-    console.log(newTask);
     setProjects(
       projects.map((project) => {
         if (project.id === id) {
