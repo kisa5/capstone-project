@@ -3,22 +3,27 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import AddTask from "@/components/AddTask";
 
-export default function Task({ addTask, task }) {
+export default function Task({ projects, onHandleAddTask }) {
   const router = useRouter();
-  const { slug } = router.query;
+  const { id } = router.query;
+  // const { isReady } = router;
+
+  const selectedProject = projects.find((project) => project.id === id) ?? {
+    tasks: [],
+  };
 
   return (
     <>
       <BackButton>
         <Link href="/"> ⬅️ </Link>
       </BackButton>
+      <Title>{selectedProject.title}</Title>
       <StyledList>
-        <Title>{slug}</Title>
-        {task.map((task, index) => (
-          <TaskItem key={index}>{task.task}</TaskItem>
+        {selectedProject.tasks.map((task) => (
+          <TaskItem key={task.id}>{task.task}</TaskItem>
         ))}
       </StyledList>
-      <AddTask addTask={addTask} />
+      <AddTask onHandleAddTask={onHandleAddTask} projectid={id} />
     </>
   );
 }

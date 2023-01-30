@@ -3,18 +3,28 @@ import Head from "next/head";
 import useLocalStorageState from "use-local-storage-state";
 
 export default function App({ Component, pageProps }) {
-  const [project, setProject] = useLocalStorageState("project", {
+  const [projects, setProjects] = useLocalStorageState("project", {
     defaultValue: [],
   });
 
-  function addProject(projectname) {
-    setProject([projectname, ...project]);
+  function addProject(newProject) {
+    setProjects([newProject, ...projects]);
   }
-  const [task, setTask] = useLocalStorageState("newTask", {
-    defaultValue: [],
-  });
-  function addTask(taskname) {
-    setTask([taskname, ...task]);
+
+  function handleAddTask(id, newTask) {
+    console.log(newTask);
+    setProjects(
+      projects.map((project) => {
+        if (project.id === id) {
+          return {
+            ...project,
+            tasks: [...project.tasks, newTask],
+          };
+        } else {
+          return project;
+        }
+      })
+    );
   }
 
   return (
@@ -26,9 +36,8 @@ export default function App({ Component, pageProps }) {
       <Component
         {...pageProps}
         addProject={addProject}
-        project={project}
-        addTask={addTask}
-        task={task}
+        onHandleAddTask={handleAddTask}
+        projects={projects}
       />
     </>
   );
