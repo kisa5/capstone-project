@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import Form from "./Form";
 
 export default function TaskForm({ onHandleAddTask, projectid }) {
   function handleSubmit(event) {
@@ -14,42 +14,6 @@ export default function TaskForm({ onHandleAddTask, projectid }) {
   }
 
   return (
-    <>
-      <Form onSubmit={handleSubmit}>
-        <label htmlFor="task"></label>
-        <TaskInput
-          id="task"
-          type="text"
-          name="task"
-          placeholder="+ add new task"
-          required
-        />
-        <SubmitButton type="submit">add</SubmitButton>
-      </Form>
-    </>
+    <Form onSubmit={handleSubmit} name="task" placeholder="add your task" />
   );
 }
-
-const Form = styled.form`
-  display: flex;
-  align-items: center;
-  padding-left: 15px;
-`;
-
-const TaskInput = styled.input`
-  width: 85%;
-  margin: 5px;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid grey;
-  font-size: 15px;
-`;
-
-const SubmitButton = styled.button`
-  position: absolute;
-  right: 16%;
-  background-color: lightgray;
-  border: none;
-  padding: 7px;
-  border-radius: 5px;
-`;
