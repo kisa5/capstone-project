@@ -4,7 +4,7 @@ import styled from "styled-components";
 export default function Form({ onSubmit, name, placeholder }) {
   const id = useId();
   return (
-    <Form onSubmit={onSubmit}>
+    <StyledForm onSubmit={onSubmit}>
       <label htmlFor={id}></label>
       <Input
         id={id}
@@ -14,11 +14,11 @@ export default function Form({ onSubmit, name, placeholder }) {
         required
       />
       <SubmitButton type="submit">add</SubmitButton>
-    </Form>
+    </StyledForm>
   );
 }
 
-const Form = styled.form`
+const StyledForm = styled.form`
   display: flex;
   align-items: center;
   padding-left: 15px;
