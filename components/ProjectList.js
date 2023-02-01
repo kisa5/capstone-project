@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-export default function ProjectList({ projects }) {
+export default function ProjectList({ projects, handleDeleteProject }) {
   return (
     <Wrapper>
       <StyledList>
@@ -12,6 +12,12 @@ export default function ProjectList({ projects }) {
           projects.map((project, index) => (
             <ProjectItem key={index}>
               <Link href={`/project/${project.id}`}>{project.title}</Link>
+              <DeleteButton
+                type="button"
+                onClick={() => handleDeleteProject(project.id)}
+              >
+                x
+              </DeleteButton>
             </ProjectItem>
           ))
         )}
@@ -41,4 +47,13 @@ const ProjectItem = styled.li`
   width: 90%;
   border-radius: 0.3rem;
   overflow: hidden;
+`;
+
+const DeleteButton = styled.button`
+  border: none;
+  font-weight: 600;
+  border-radius: 50px;
+  font-size: 13px;
+  height: 25px;
+  width: 30px;
 `;
