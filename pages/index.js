@@ -16,10 +16,7 @@ export default function HomePage({
       <Header>
         <Title>my projects</Title>
       </Header>
-      <ProjectList
-        projects={projects}
-        handleDeleteProject={handleDeleteProject}
-      />
+      <ProjectList projects={projects} />
       <ProjectForm addProject={addProject} />
     </>
   );

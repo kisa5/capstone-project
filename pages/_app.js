@@ -26,27 +26,6 @@ export default function App({ Component, pageProps }) {
     );
   }
 
-  function handleDeleteProject(id) {
-    setProjects((oldProjects) =>
-      oldProjects.filter((project) => project.id !== id)
-    );
-  }
-
-  function handleDeleteTask(taskId, projectId) {
-    setProjects(
-      projects.map((e) => {
-        if (e.id === projectId) {
-          return {
-            ...e,
-            tasks: e.tasks.filter((task) => task.id !== taskId),
-          };
-        } else {
-          return e;
-        }
-      })
-    );
-  }
-
   return (
     <>
       <GlobalStyle />
@@ -58,8 +37,6 @@ export default function App({ Component, pageProps }) {
         addProject={addProject}
         onHandleAddTask={handleAddTask}
         projects={projects}
-        handleDeleteProject={handleDeleteProject}
-        handleDeleteTask={handleDeleteTask}
       />
     </>
   );
