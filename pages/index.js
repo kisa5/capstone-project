@@ -1,8 +1,12 @@
+// import external resources
+import useLocalStorageState from "use-local-storage-state";
+import styled from "styled-components";
+// import internal resources
 import ProjectCard from "@/components/ProjectCard";
 import Logo from "@/components/svg/Logo.svg";
-import styled from "styled-components";
+import ProjectForm from "@/components/ProjectForm";
 
-export default function HomePage() {
+export default function HomePage({ addProject, projects }) {
   return (
     <>
       <Header>
@@ -10,7 +14,8 @@ export default function HomePage() {
         <Title>my projects</Title>
       </Header>
       <main>
-        <ProjectCard />
+        <ProjectCard projects={projects} />
+        <ProjectForm addProject={addProject} />
       </main>
     </>
   );
