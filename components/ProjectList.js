@@ -2,34 +2,40 @@ import styled from "styled-components";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-export default function ProjectCard({ projects, onHandleAddTask }) {
+export default function ProjectList({ projects, handleDeleteProject }) {
   return (
     <Wrapper>
-      <ProjectList>
+      <StyledList>
         {!projects ? (
           <p>Please add a project...</p>
         ) : (
           projects.map((project, index) => (
             <ProjectItem key={index}>
               <Link href={`/project/${project.id}`}>{project.title}</Link>
+              <DeleteButton
+                type="button"
+                onClick={() => handleDeleteProject(project.id)}
+              >
+                x
+              </DeleteButton>
             </ProjectItem>
           ))
         )}
-      </ProjectList>
+      </StyledList>
     </Wrapper>
   );
 }
 
 const Wrapper = styled.div`
-  margin: 0px 0px 55px 0px;
+  margin: 50px 0px 55px 0px;
 `;
 
-const ProjectList = styled.ul`
+const StyledList = styled.ul`
   display: flex;
   position: relative;
   flex-direction: column;
-  align-items: start;
-  padding-left: 15px;
+  align-items: center;
+  padding: 0;
   margin-bottom: 0;
 `;
 
@@ -38,7 +44,16 @@ const ProjectItem = styled.li`
   padding: 10px;
   margin: 5px;
   list-style-type: none;
-  width: 85%;
+  width: 90%;
   border-radius: 0.3rem;
   overflow: hidden;
+`;
+
+const DeleteButton = styled.button`
+  border: none;
+  font-weight: 600;
+  border-radius: 50px;
+  font-size: 13px;
+  height: 25px;
+  width: 30px;
 `;

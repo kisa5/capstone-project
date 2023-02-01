@@ -2,37 +2,39 @@
 import useLocalStorageState from "use-local-storage-state";
 import styled from "styled-components";
 // import internal resources
-import ProjectCard from "@/components/ProjectCard";
+import ProjectList from "@/components/ProjectList";
 import Logo from "@/components/svg/Logo.svg";
 import ProjectForm from "@/components/ProjectForm";
 
-export default function HomePage({ addProject, projects }) {
+export default function HomePage({
+  addProject,
+  projects,
+  handleDeleteProject,
+}) {
   return (
     <>
       <Header>
-        <Logo alt="logo" height={50} width={50} />
         <Title>my projects</Title>
       </Header>
-      <main>
-        <ProjectCard projects={projects} />
-        <ProjectForm addProject={addProject} />
-      </main>
+      <ProjectList
+        projects={projects}
+        handleDeleteProject={handleDeleteProject}
+      />
+      <ProjectForm addProject={addProject} />
     </>
   );
 }
 
-const Header = styled.div`
+const Header = styled.main`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   padding: 10px;
+  align-items: center;
 `;
 
 const Title = styled.h1`
   position: absolute;
-  top: 40px;
-  left: 15px;
+  top: 20px;
   font-style: bold;
   font-size: 17px;
 `;
