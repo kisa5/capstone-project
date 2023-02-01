@@ -4,19 +4,25 @@ import { useRouter } from "next/router";
 
 export default function ProjectCard({ projects, onHandleAddTask }) {
   return (
-    <ProjectList>
-      {!projects ? (
-        <p>Please add a project...</p>
-      ) : (
-        projects.map((project, index) => (
-          <ProjectItem key={index}>
-            <Link href={`/project/${project.id}`}>{project.title}</Link>
-          </ProjectItem>
-        ))
-      )}
-    </ProjectList>
+    <Wrapper>
+      <ProjectList>
+        {!projects ? (
+          <p>Please add a project...</p>
+        ) : (
+          projects.map((project, index) => (
+            <ProjectItem key={index}>
+              <Link href={`/project/${project.id}`}>{project.title}</Link>
+            </ProjectItem>
+          ))
+        )}
+      </ProjectList>
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  margin: 0px 0px 55px 0px;
+`;
 
 const ProjectList = styled.ul`
   display: flex;
@@ -33,5 +39,6 @@ const ProjectItem = styled.li`
   margin: 5px;
   list-style-type: none;
   width: 85%;
-  border-radius: 5px;
+  border-radius: 0.3rem;
+  overflow: hidden;
 `;

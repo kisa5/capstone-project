@@ -16,16 +16,22 @@ export default function Task({ projects, onHandleAddTask }) {
       <BackButton>
         <Link href="/"> ⬅️ </Link>
       </BackButton>
-      <StyledList>
-        <Title>{selectedProject.title}</Title>
-        {selectedProject.tasks.map((task) => (
-          <TaskItem key={task.id}>{task.task}</TaskItem>
-        ))}
-      </StyledList>
+      <Wrapper>
+        <StyledList>
+          <Title>{selectedProject.title}</Title>
+          {selectedProject.tasks.map((task) => (
+            <TaskItem key={task.id}>{task.task}</TaskItem>
+          ))}
+        </StyledList>
+      </Wrapper>
       <TaskForm onHandleAddTask={onHandleAddTask} projectid={id} />
     </>
   );
 }
+
+const Wrapper = styled.div`
+  margin: 0px 0px 55px 0px;
+`;
 
 const Title = styled.h1`
   top: 40px;
@@ -53,6 +59,7 @@ const TaskItem = styled.li`
   margin: 5px;
   list-style-type: none;
   width: 85%;
-  border-radius: 5px;
+  border-radius: 0.3rem;
   font-size: 15;
+  overflow: hidden;
 `;
