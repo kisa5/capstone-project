@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import TaskForm from "@/components/TaskForm";
 
-export default function Task({ projects, onHandleAddTask }) {
+export default function Task({ projects, onHandleAddTask, handleDeleteTask }) {
   const router = useRouter();
   const { id } = router.query;
 
@@ -21,7 +21,15 @@ export default function Task({ projects, onHandleAddTask }) {
         <StyledList>
           <Title>{selectedProject.title}</Title>
           {selectedProject.tasks.map((task) => (
-            <TaskItem key={task.id}>{task.task}</TaskItem>
+            <TaskItem key={task.id}>
+              {task.task}
+              <DeleteButton
+                type="button"
+                onClick={() => handleDeleteTask(task.id, id)}
+              >
+                x
+              </DeleteButton>
+            </TaskItem>
           ))}
         </StyledList>
       </Wrapper>
@@ -56,9 +64,18 @@ const TaskItem = styled.li`
   background-color: lightgrey;
   padding: 10px;
   margin: 5px;
-  list-style-type: none;
+  list-style: none;
   width: 90%;
   border-radius: 0.3rem;
   font-size: 15;
   overflow: hidden;
+`;
+
+const DeleteButton = styled.button`
+  border: none;
+  font-weight: 600;
+  border-radius: 50px;
+  font-size: 13px;
+  height: 25px;
+  width: 30px;
 `;

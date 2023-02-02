@@ -16,13 +16,16 @@ export default function HomePage({
       <Header>
         <Title>my projects</Title>
       </Header>
-      <ProjectList projects={projects} />
+      <ProjectList
+        projects={projects}
+        handleDeleteProject={handleDeleteProject}
+      />
       <ProjectForm addProject={addProject} />
     </>
   );
 }
 
-const Header = styled.main`
+const Header = styled.header`
   display: flex;
   flex-direction: column;
   padding: 10px;
