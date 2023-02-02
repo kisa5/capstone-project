@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import ReactDOM from "react-dom";
 
-export default function Modal({ show, children }) {
-  const modalContent = show ? (
+export default function Modal({ appear, children }) {
+  const modalContent = appear ? (
     <StyledModalOverlay>{children}</StyledModalOverlay>
   ) : null;
 
