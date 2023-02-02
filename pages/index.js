@@ -25,7 +25,7 @@ export default function HomePage({
   );
 }
 
-const Header = styled.main`
+const Header = styled.header`
   display: flex;
   flex-direction: column;
   padding: 10px;

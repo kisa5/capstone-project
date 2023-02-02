@@ -43,7 +43,7 @@ const ProjectItem = styled.li`
   background-color: lightgrey;
   padding: 10px;
   margin: 5px;
-  list-style-type: none;
+  list-style: none;
   width: 90%;
   border-radius: 0.3rem;
   overflow: hidden;
