@@ -14,10 +14,17 @@ export default function ProjectList({ projects, handleDeleteProject }) {
             setSearchTerm(event.target.value);
           }}
         />
-        {!projects ? (
-          <p>Please add a project...</p>
-        ) : (
-          projects.map((project, index) => (
+        {projects
+          .filter((val) => {
+            if (searchTerm == "") {
+              return val;
+            } else if (
+              val.title.toLowerCase().includes(searchTerm.toLowerCase())
+            ) {
+              return val;
+            }
+          })
+          .map((project, index) => (
             <ProjectItem key={index}>
               <Link href={`/project/${project.id}`}>{project.title}</Link>
               <DeleteButton
@@ -27,8 +34,7 @@ export default function ProjectList({ projects, handleDeleteProject }) {
                 x
               </DeleteButton>
             </ProjectItem>
-          ))
-        )}
+          ))}
       </StyledList>
     </Wrapper>
   );
