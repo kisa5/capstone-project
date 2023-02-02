@@ -74,6 +74,7 @@ const ProjectItem = styled.li`
   padding: 10px;
   margin: 5px;
   list-style: none;
+  word-wrap: break-word;
   width: 90%;
   border-radius: 0.3rem;
   overflow: hidden;
