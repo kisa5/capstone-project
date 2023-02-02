@@ -7,6 +7,13 @@ export default function ProjectList({ projects, handleDeleteProject }) {
   return (
     <Wrapper>
       <StyledList>
+        <SearchBar
+          type="text"
+          placeholder="search"
+          onChange={(event) => {
+            setSearchTerm(event.target.value);
+          }}
+        />
         {!projects ? (
           <p>Please add a project...</p>
         ) : (
