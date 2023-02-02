@@ -12,7 +12,6 @@ export default function Form({ onSubmit, name, placeholder }) {
       <Input
         id={id}
         type="text"
-        pattern="^[a-zA-Z0-9äüöÄÜÖ][a-zA-Z0-9-_ äüöÄÜÖß.]{1,}"
         maxLength="30"
         name={name}
         placeholder={placeholder}
