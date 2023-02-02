@@ -40,6 +40,21 @@ export default function ProjectList({ projects, handleDeleteProject }) {
   );
 }
 
+const SearchBar = styled.input`
+  width: 90%;
+  margin: 5px;
+  padding: 10px;
+  border-radius: 7px;
+  border: 1px solid grey;
+  font-size: 15px;
+  word-wrap: break-word;
+  word-break: break-all;
+  border: none;
+  font-size: 14px;
+  color: #696969;
+  box-shadow: 0 4px 14px 0 rgb(0 0 0 / 10%);
+`;
+
 const Wrapper = styled.div`
   margin: 50px 0px 55px 0px;
 `;
