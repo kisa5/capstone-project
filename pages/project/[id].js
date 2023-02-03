@@ -10,7 +10,7 @@ const ModalDeleteTask = dynamic(() => import("@/components/ModalDeleteTask"));
 export default function Task({ projects, onHandleAddTask, handleDeleteTask }) {
   const router = useRouter();
   const { id } = router.query;
-  const [appearModalDeleteTask, setAppearModalDeleteTask] = useState();
+  const [taskToDelete, setTaskToDelete] = useState(null);
 
   const selectedProject = projects.find((project) => project.id === id) ?? {
     tasks: [],
@@ -30,18 +30,18 @@ export default function Task({ projects, onHandleAddTask, handleDeleteTask }) {
               {task.task}
               <DeleteButton
                 type="button"
-                onClick={() => setAppearModalDeleteTask(!appearModalDeleteTask)}
+                onClick={() => setTaskToDelete(task.id, id)}
               >
-                <ModalDeleteTask
-                  appearModalDeleteTask={appearModalDeleteTask}
-                  handleDeleteTask={() => handleDeleteTask(task.id, id)}
-                  handleClose={() => setAppearModalDeleteTask(false)}
-                />
                 x
               </DeleteButton>
             </TaskItem>
           ))}
         </StyledList>
+        <ModalDeleteTask
+          appearModalDeleteTask={taskToDelete}
+          handleDeleteTask={() => handleDeleteTask(taskToDelete)}
+          handleClose={() => setTaskToDelete(null)}
+        />
       </Wrapper>
       <TaskForm onHandleAddTask={onHandleAddTask} projectid={id} />
     </>

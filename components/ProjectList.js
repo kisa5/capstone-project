@@ -10,7 +10,7 @@ const ModalDeleteProject = dynamic(() =>
 
 export default function ProjectList({ projects, handleDeleteProject }) {
   const [searchTerm, setSearchTerm] = useState("");
-  const [appearModalDeleteProject, setAppearModalDeleteProject] = useState();
+  const [projectToDelete, setProjectToDelete] = useState(null);
 
   return (
     <Wrapper>
@@ -37,22 +37,20 @@ export default function ProjectList({ projects, handleDeleteProject }) {
               <Link href={`/project/${project.id}`}>{project.title}</Link>
               <DeleteButton
                 type="button"
-                onClick={() =>
-                  setAppearModalDeleteProject(!appearModalDeleteProject)
-                }
+                onClick={() => setProjectToDelete(project.id)}
               >
                 x
-                <ModalDeleteProject
-                  appearModalDeleteProject={appearModalDeleteProject}
-                  handleDeleteProject={() => handleDeleteProject(project.id)}
-                  handleClose={() => {
-                    setAppearModalDeleteProject(false);
-                  }}
-                />
               </DeleteButton>
             </ProjectItem>
           ))}
       </StyledList>
+      <ModalDeleteProject
+        appearModalDeleteProject={projectToDelete}
+        handleDeleteProject={() => handleDeleteProject(projectToDelete)}
+        handleClose={() => {
+          setProjectToDelete(null);
+        }}
+      />
     </Wrapper>
   );
 }
