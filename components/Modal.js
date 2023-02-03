@@ -2,9 +2,7 @@ import styled from "styled-components";
 import ReactDOM from "react-dom";
 
 export default function Modal({ appear, children }) {
-  const modalContent = appear ? (
-    <StyledModalOverlay>{children}</StyledModalOverlay>
-  ) : null;
+  const modalContent = appear ? <StyledModal>{children}</StyledModal> : null;
 
   return ReactDOM.createPortal(
     modalContent,
@@ -12,7 +10,7 @@ export default function Modal({ appear, children }) {
   );
 }
 
-const StyledModalOverlay = styled.div`
+const StyledModal = styled.div`
   position: absolute;
   inset: 0;
   display: flex;

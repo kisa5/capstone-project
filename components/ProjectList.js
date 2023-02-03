@@ -2,9 +2,16 @@ import styled from "styled-components";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import dynamic from "next/dynamic";
+
+const ModalDeleteProject = dynamic(() =>
+  import("@/components/ModalDeleteProject")
+);
 
 export default function ProjectList({ projects, handleDeleteProject }) {
   const [searchTerm, setSearchTerm] = useState("");
+  const [appearModalDeleteProject, setAppearModalDeleteProject] = useState();
+
   return (
     <Wrapper>
       <StyledList>
@@ -30,9 +37,18 @@ export default function ProjectList({ projects, handleDeleteProject }) {
               <Link href={`/project/${project.id}`}>{project.title}</Link>
               <DeleteButton
                 type="button"
-                onClick={() => handleDeleteProject(project.id)}
+                onClick={() =>
+                  setAppearModalDeleteProject(!appearModalDeleteProject)
+                }
               >
                 x
+                <ModalDeleteProject
+                  appearModalDeleteProject={appearModalDeleteProject}
+                  handleDeleteProject={() => handleDeleteProject(project.id)}
+                  handleClose={() => {
+                    setAppearModalDeleteProject(false);
+                  }}
+                />
               </DeleteButton>
             </ProjectItem>
           ))}

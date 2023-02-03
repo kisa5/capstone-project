@@ -2,21 +2,21 @@ import Modal from "@/components/Modal";
 import styled from "styled-components";
 
 export default function ModalDelete({
-  appearModalDelete,
-  handleDeleteProject,
+  appearModalDeleteTask,
+  handleDeleteTask,
   handleClose,
 }) {
   function deleteAndClose() {
-    handleDeleteProject();
+    handleDeleteTask();
     handleClose();
   }
   return (
-    <Modal appear={appearModalDelete}>
+    <Modal appear={appearModalDeleteTask}>
       <StyledCard>
-        <Question>Do you really want to delete your project?</Question>
+        <Question>Do you really want to delete your task?</Question>
         <Wrapper>
           <StyledButton onClick={handleClose}>No</StyledButton>
-          <StyledButton oClick={deleteAndClose}>Yes</StyledButton>
+          <StyledButton onClick={deleteAndClose}>Yes</StyledButton>
         </Wrapper>
       </StyledCard>
     </Modal>
@@ -24,12 +24,12 @@ export default function ModalDelete({
 }
 
 const StyledCard = styled.div`
-  display: flex;
+  display: grid;
   align-items: flex-start;
   justify-items: center;
   background-color: rgb(250, 250, 250);
-  width: 80%;
-  height: 50%;
+  width: 95vw;
+  height: 30vh;
   border-radius: 5px;
   padding: 10px;
 `;
