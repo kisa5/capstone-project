@@ -2,15 +2,10 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import TaskForm from "@/components/TaskForm";
-import { useState } from "react";
-import dynamic from "next/dynamic";
-
-const ModalDeleteTask = dynamic(() => import("@/components/ModalDeleteTask"));
 
 export default function Task({ projects, onHandleAddTask, handleDeleteTask }) {
   const router = useRouter();
   const { id } = router.query;
-  const [taskToDelete, setTaskToDelete] = useState(null);
 
   const selectedProject = projects.find((project) => project.id === id) ?? {
     tasks: [],
@@ -30,18 +25,15 @@ export default function Task({ projects, onHandleAddTask, handleDeleteTask }) {
               {task.task}
               <DeleteButton
                 type="button"
-                onClick={() => setTaskToDelete(task.id, id)}
+                onClick={() => {
+                  handleDeleteTask(task.id, id);
+                }}
               >
                 x
               </DeleteButton>
             </TaskItem>
           ))}
         </StyledList>
-        <ModalDeleteTask
-          appearModalDeleteTask={taskToDelete}
-          handleDeleteTask={() => handleDeleteTask(taskToDelete)}
-          handleClose={() => setTaskToDelete(null)}
-        />
       </Wrapper>
       <TaskForm onHandleAddTask={onHandleAddTask} projectid={id} />
     </>
@@ -60,7 +52,6 @@ const Title = styled.h1`
 const BackButton = styled.div`
   margin: 5px;
 `;
-
 const StyledList = styled.ul`
   display: flex;
   position: relative;

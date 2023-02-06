@@ -4,8 +4,11 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import dynamic from "next/dynamic";
 
-const ModalDeleteProject = dynamic(() =>
-  import("@/components/ModalDeleteProject")
+const ModalDeleteProject = dynamic(
+  () => import("@/components/ModalDeleteProject"),
+  {
+    ssr: false,
+  }
 );
 
 export default function ProjectList({ projects, handleDeleteProject }) {
