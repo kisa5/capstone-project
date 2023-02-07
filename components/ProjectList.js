@@ -12,6 +12,7 @@ const ModalDeleteProject = dynamic(
 );
 
 export default function ProjectList({ projects, handleDeleteProject }) {
+
   const [searchTerm, setSearchTerm] = useState("");
   const [projectToDelete, setProjectToDelete] = useState(null);
 
@@ -46,6 +47,22 @@ export default function ProjectList({ projects, handleDeleteProject }) {
               </DeleteButton>
             </ProjectItem>
           ))}
+          
+  return (
+    <Wrapper>
+      <StyledList>
+        {projects.map((project, index) => (
+          <ProjectItem key={index}>
+            <Link href={`/project/${project.id}`}>{project.title}</Link>
+            <DeleteButton
+              type="button"
+              onClick={() => handleDeleteProject(project.id)}
+            >
+              x
+            </DeleteButton>
+          </ProjectItem>
+        ))}
+
       </StyledList>
       <ModalDeleteProject
         appearModalDeleteProject={projectToDelete}
@@ -57,21 +74,6 @@ export default function ProjectList({ projects, handleDeleteProject }) {
     </Wrapper>
   );
 }
-
-const SearchBar = styled.input`
-  width: 90%;
-  margin: 5px;
-  padding: 10px;
-  border-radius: 7px;
-  border: 1px solid grey;
-  font-size: 15px;
-  word-wrap: break-word;
-  word-break: break-all;
-  border: none;
-  font-size: 14px;
-  color: #696969;
-  box-shadow: 0 4px 14px 0 rgb(0 0 0 / 10%);
-`;
 
 const Wrapper = styled.div`
   margin: 50px 0px 55px 0px;
