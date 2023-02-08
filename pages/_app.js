@@ -88,3 +88,7 @@ export default function App({ Component, pageProps }) {
     </>
   );
 }
+
+project: [
+  { title: "", slug: "", id: "", tasks: [{ task: "", id: "", isDone: false }] },
+];

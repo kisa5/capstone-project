@@ -32,8 +32,7 @@ export default function Task({
               <label>
                 <input
                   type="checkbox"
-                  // checkbox should be checked if task.isDone is true
-                  //checked
+                  checked={task.isDone}
                   onChange={() => handleTaskCheckbox(task.id, id)}
                 />
                 {task.task}
