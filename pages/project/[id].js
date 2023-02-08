@@ -3,13 +3,20 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import TaskForm from "@/components/TaskForm";
 
-export default function Task({ projects, onHandleAddTask, handleDeleteTask }) {
+export default function Task({
+  projects,
+  onHandleAddTask,
+  handleDeleteTask,
+  handleTaskCheckbox,
+}) {
   const router = useRouter();
   const { id } = router.query;
+  const { isReady } = router;
+  if (!isReady) {
+    return <p>project is loading ..</p>;
+  }
 
-  const selectedProject = projects.find((project) => project.id === id) ?? {
-    tasks: [],
-  };
+  const selectedProject = projects.find((project) => project.id === id);
 
   return (
     <>
