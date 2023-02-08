@@ -32,7 +32,7 @@ export default function App({ Component, pageProps }) {
         if (project.id === projectId) {
           return {
             ...project,
-            task: project.tasks.map((task) => {
+            tasks: project.tasks.map((task) => {
               if (task.id === taskId) {
                 return {
                   ...task,
