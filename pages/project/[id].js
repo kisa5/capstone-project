@@ -29,7 +29,15 @@ export default function Task({
           <Title>{selectedProject.title}</Title>
           {selectedProject.tasks.map((task) => (
             <TaskItem key={task.id}>
-              {task.task}
+              <label>
+                <input
+                  type="checkbox"
+                  // checkbox should be checked if task.isDone is true
+                  //checked
+                  onChange={() => handleTaskCheckbox(task.id, id)}
+                />
+                {task.task}
+              </label>
               <DeleteButton
                 type="button"
                 onClick={() => {
