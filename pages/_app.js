@@ -70,6 +70,22 @@ export default function App({ Component, pageProps }) {
       })
     );
   }
+
+  function handleNote(data, id) {
+    setProjects(
+      projects.map((project) => {
+        if (project.id === id) {
+          return {
+            ...project,
+            notes: data,
+          };
+        } else {
+          return project;
+        }
+      })
+    );
+  }
+
   return (
     <>
       <GlobalStyle />
@@ -84,6 +100,7 @@ export default function App({ Component, pageProps }) {
         handleDeleteProject={handleDeleteProject}
         handleTaskCheckbox={handleTaskCheckbox}
         handleDeleteTask={handleDeleteTask}
+        handleNote={handleNote}
       />
     </>
   );

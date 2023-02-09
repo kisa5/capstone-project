@@ -8,6 +8,7 @@ export default function Task({
   onHandleAddTask,
   handleDeleteTask,
   handleTaskCheckbox,
+  handleNote,
 }) {
   const router = useRouter();
   const { id } = router.query;
@@ -18,6 +19,13 @@ export default function Task({
 
   const selectedProject = projects.find((project) => project.id === id);
 
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+    handleNote(data.note, id);
+  }
   return (
     <>
       <BackButton>
