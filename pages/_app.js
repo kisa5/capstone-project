@@ -26,6 +26,30 @@ export default function App({ Component, pageProps }) {
     );
   }
 
+  function handleTaskCheckbox(taskId, projectId) {
+    setProjects(
+      projects.map((project) => {
+        if (project.id === projectId) {
+          return {
+            ...project,
+            tasks: project.tasks.map((task) => {
+              if (task.id === taskId) {
+                return {
+                  ...task,
+                  isDone: !task.isDone,
+                };
+              } else {
+                return task;
+              }
+            }),
+          };
+        } else {
+          return project;
+        }
+      })
+    );
+  }
+
   function handleDeleteProject(id) {
     setProjects((oldProjects) =>
       oldProjects.filter((project) => project.id !== id)
@@ -58,8 +82,13 @@ export default function App({ Component, pageProps }) {
         onHandleAddTask={handleAddTask}
         projects={projects}
         handleDeleteProject={handleDeleteProject}
+        handleTaskCheckbox={handleTaskCheckbox}
         handleDeleteTask={handleDeleteTask}
       />
     </>
   );
 }
+
+project: [
+  { title: "", slug: "", id: "", tasks: [{ task: "", id: "", isDone: false }] },
+];

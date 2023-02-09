@@ -3,13 +3,20 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import TaskForm from "@/components/TaskForm";
 
-export default function Task({ projects, onHandleAddTask, handleDeleteTask }) {
+export default function Task({
+  projects,
+  onHandleAddTask,
+  handleDeleteTask,
+  handleTaskCheckbox,
+}) {
   const router = useRouter();
   const { id } = router.query;
+  const { isReady } = router;
+  if (!isReady) {
+    return <p>project is loading ..</p>;
+  }
 
-  const selectedProject = projects.find((project) => project.id === id) ?? {
-    tasks: [],
-  };
+  const selectedProject = projects.find((project) => project.id === id);
 
   return (
     <>
@@ -22,10 +29,19 @@ export default function Task({ projects, onHandleAddTask, handleDeleteTask }) {
           <Title>{selectedProject.title}</Title>
           {selectedProject.tasks.map((task) => (
             <TaskItem key={task.id}>
-              {task.task}
+              <label>
+                <input
+                  type="checkbox"
+                  checked={task.isDone}
+                  onChange={() => handleTaskCheckbox(task.id, id)}
+                />
+                {task.task}
+              </label>
               <DeleteButton
                 type="button"
-                onClick={() => handleDeleteTask(task.id, id)}
+                onClick={() => {
+                  handleDeleteTask(task.id, id);
+                }}
               >
                 x
               </DeleteButton>
@@ -39,7 +55,7 @@ export default function Task({ projects, onHandleAddTask, handleDeleteTask }) {
 }
 
 const Wrapper = styled.div`
-  margin: 0px 0px 55px 0px;
+  margin: 0 0 55px 0;
 `;
 
 const Title = styled.h1`
@@ -50,7 +66,6 @@ const Title = styled.h1`
 const BackButton = styled.div`
   margin: 5px;
 `;
-
 const StyledList = styled.ul`
   display: flex;
   position: relative;
