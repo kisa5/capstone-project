@@ -49,6 +49,16 @@ export default function Task({
           ))}
         </StyledList>
       </Wrapper>
+      <div>Notes:</div>
+      <form onSubmit={handleSubmit}>
+        <textarea
+          rows={10}
+          placeholder="Write your note here .."
+          name="note"
+          defaultValue={selectedProject.notes}
+        ></textarea>
+        <button type="submit">save note</button>
+      </form>
       <TaskForm onHandleAddTask={onHandleAddTask} projectid={id} />
     </>
   );
