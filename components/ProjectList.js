@@ -74,7 +74,7 @@ const SearchBar = styled.input`
 `;
 
 const Wrapper = styled.div`
-  margin: 50px 0px 55px 0px;
+  margin: 50px 0 55px 0;
 `;
 
 const StyledList = styled.ul`

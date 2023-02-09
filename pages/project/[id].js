@@ -55,7 +55,7 @@ export default function Task({
 }
 
 const Wrapper = styled.div`
-  margin: 0px 0px 55px 0px;
+  margin: 0 0 55px 0;
 `;
 
 const Title = styled.h1`
