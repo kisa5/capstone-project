@@ -16,10 +16,12 @@ export default function HomePage({
       <Header>
         <Title>my projects</Title>
       </Header>
+
       <ProjectList
         projects={projects}
         handleDeleteProject={handleDeleteProject}
       />
+
       <ProjectForm addProject={addProject} />
     </>
   );
@@ -37,4 +39,5 @@ const Title = styled.h1`
   top: 20px;
   font-style: bold;
   font-size: 17px;
+  color: #494b49;
 `;

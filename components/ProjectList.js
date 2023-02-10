@@ -17,49 +17,59 @@ export default function ProjectList({ projects, handleDeleteProject }) {
 
   return (
     <Wrapper>
-      <StyledList>
-        <SearchBar
-          type="text"
-          placeholder="search"
-          onChange={(event) => {
-            setSearchTerm(event.target.value);
-          }}
-        />
-        {projects
-          .filter((val) => {
-            if (searchTerm == "") {
-              return val;
-            } else if (
-              val.title.toLowerCase().includes(searchTerm.toLowerCase())
-            ) {
-              return val;
-            }
-          })
-          .map((project, index) => (
-            <ProjectItem key={index}>
-              <Link href={`/project/${project.id}`}>{project.title}</Link>
-              <DeleteButton
-                type="button"
-                onClick={() => setProjectToDelete(project.id)}
-              >
-                x
-              </DeleteButton>
-            </ProjectItem>
-          ))}
-      </StyledList>
-      <ModalDeleteProject
-        appearModalDeleteProject={projectToDelete}
-        handleDeleteProject={() => handleDeleteProject(projectToDelete)}
-        handleClose={() => {
-          setProjectToDelete(null);
+      <SearchBar
+        type="text"
+        placeholder="search"
+        onChange={(event) => {
+          setSearchTerm(event.target.value);
         }}
       />
+      <ProjectWrapper>
+        <StyledList>
+          {projects
+            .filter((val) => {
+              if (searchTerm == "") {
+                return val;
+              } else if (
+                val.title.toLowerCase().includes(searchTerm.toLowerCase())
+              ) {
+                return val;
+              }
+            })
+            .map((project, index) => (
+              <ProjectItem key={index}>
+                <Link href={`/project/${project.id}`}>{project.title}</Link>
+                <DeleteButton
+                  type="button"
+                  onClick={() => setProjectToDelete(project.id)}
+                >
+                  x
+                </DeleteButton>
+              </ProjectItem>
+            ))}
+        </StyledList>
+        <ModalDeleteProject
+          appearModalDeleteProject={projectToDelete}
+          handleDeleteProject={() => handleDeleteProject(projectToDelete)}
+          handleClose={() => {
+            setProjectToDelete(null);
+          }}
+        />
+      </ProjectWrapper>
     </Wrapper>
   );
 }
 
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 const SearchBar = styled.input`
-  width: 90%;
+  position: fixed;
+  top: 5em;
+  width: 85%;
   margin: 5px;
   padding: 10px;
   border-radius: 7px;
@@ -73,8 +83,12 @@ const SearchBar = styled.input`
   box-shadow: 0 4px 14px 0 rgb(0 0 0 / 10%);
 `;
 
-const Wrapper = styled.div`
-  margin: 50px 0 55px 0;
+const ProjectWrapper = styled.div`
+  position: fixed;
+  top: 6.5em;
+  bottom: 3.5em;
+  overflow: scroll;
+  width: 100%;
 `;
 
 const StyledList = styled.ul`
@@ -87,12 +101,12 @@ const StyledList = styled.ul`
 `;
 
 const ProjectItem = styled.li`
-  background-color: lightgrey;
-  padding: 10px;
+  background-color: #fff;
+  width: 80%;
+  padding: 8px;
   margin: 5px;
   list-style: none;
   word-wrap: break-word;
-  width: 90%;
   border-radius: 0.3rem;
   overflow: hidden;
 `;

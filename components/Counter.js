@@ -21,5 +21,5 @@ const Wrapper = styled.div`
 
 const Count = styled.p`
   font-size: 0.7em;
-  color: #696969;
+  color: #a4a8a4;
 `;
