@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import { useState } from "react";
 import TaskForm from "@/components/TaskForm";
-import useLocalStorageState from "use-local-storage-state";
+import Counter from "@/components/Counter";
 
 export default function Task({
   projects,
@@ -20,12 +20,12 @@ export default function Task({
     handleNote(data.note, id);
   }
 
-  const [count, setCount] = useLocalStorageState(250);
+  const [count, setCount] = useState(0);
   const router = useRouter();
   const { id } = router.query;
   const { isReady } = router;
   if (!isReady) {
-    return <p>project is loading ..</p>;
+    return <div>project is loading ..</div>;
   }
 
   const selectedProject = projects.find((project) => project.id === id);
@@ -38,7 +38,7 @@ export default function Task({
         </BackButton>
         <Title>{selectedProject.title}</Title>
       </Header>
-      <Body>
+      <Wrapper>
         <TaskWrapper>
           <StyledList>
             {selectedProject.tasks.map((task) => (
@@ -72,27 +72,25 @@ export default function Task({
             defaultValue={selectedProject.notes}
             onChange={(event) => setCount(event.target.value.length)}
           ></Textarea>
-          {count < 250 && count >= 0 ? (
-            <NotesCounter>{250 - count}</NotesCounter>
-          ) : (
-            <NotesCounter>0</NotesCounter>
-          )}
+          <NotesCounter>
+            <Counter maxLength={250} counter={count} />
+          </NotesCounter>
           <SaveNoteButton type="submit">save note</SaveNoteButton>
         </NotesForm>
         <TaskForm onHandleAddTask={onHandleAddTask} projectid={id} />
-      </Body>
+      </Wrapper>
     </>
   );
 }
 
-const Header = styled.div`
+const Header = styled.header`
   display: flex;
   flex-direction: column;
   padding: 0.9em;
   align-items: center;
 `;
 const BackButton = styled.div`
-  position: absolute;
+  position: fixed;
   padding-left: 0.5em;
   padding-right: 0.5em;
   left: 1em;
@@ -109,14 +107,14 @@ const BackButton = styled.div`
 `;
 
 const Title = styled.h1`
-  position: absolute;
+  position: fixed;
   top: 2em;
   font-style: bold;
   font-size: 17px;
   color: #494b49;
 `;
 
-const Body = styled.div`
+const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -165,26 +163,18 @@ const DeleteButton = styled.button`
 const NotesForm = styled.form`
   display: flex;
   position: fixed;
-  bottom: 5px;
-  display: flex;
-  position: fixed;
   bottom: 3.7em;
+
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 0;
   width: 100%;
-  flex-direction: column;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-  flex-direction: column;
-  align-items: center;
-  margin: 0;
-  padding: 0;
 `;
 
-const NotesCounter = styled.p`
+const NotesCounter = styled.div`
   position: absolute;
   bottom: 0em;
-  font-size: 0.7em;
-  color: #a4a8a4;
 `;
 const Textarea = styled.textarea`
   width: 80%;

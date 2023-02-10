@@ -17,7 +17,7 @@ export default function ProjectList({ projects, handleDeleteProject }) {
 
   return (
     <Wrapper>
-      <SearchBar
+      <SearchInput
         type="text"
         placeholder="search"
         onChange={(event) => {
@@ -43,7 +43,7 @@ export default function ProjectList({ projects, handleDeleteProject }) {
                   type="button"
                   onClick={() => setProjectToDelete(project.id)}
                 >
-                  x
+                  -
                 </DeleteButton>
               </ProjectItem>
             ))}
@@ -66,7 +66,7 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
-const SearchBar = styled.input`
+const SearchInput = styled.input`
   position: fixed;
   top: 5em;
   width: 85%;

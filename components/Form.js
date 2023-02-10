@@ -18,7 +18,9 @@ export default function Form({ onSubmit, name, placeholder }) {
         onChange={(event) => setCount(event.target.value.length)}
         required
       />
-      <Counter maxLength={30} counter={count} />
+      <CounterWrapper>
+        <Counter maxLength={30} counter={count} />
+      </CounterWrapper>
       <SubmitButton type="submit">+</SubmitButton>
     </StyledForm>
   );
@@ -50,6 +52,12 @@ const Input = styled.input`
   box-shadow: 0 4px 14px 0 rgb(0 0 0 / 10%);
 `;
 
+const CounterWrapper = styled.div`
+  position: absolute;
+  top: 12%;
+  right: 21%;
+  justify-content: center;
+`;
 const SubmitButton = styled.button`
   position: absolute;
   top: 25%;
