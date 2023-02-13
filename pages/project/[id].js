@@ -1,9 +1,11 @@
 import Link from "next/link";
+import React from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { useState } from "react";
 import TaskForm from "@/components/TaskForm";
 import Counter from "@/components/Counter";
+import useLocalStorageState from "use-local-storage-state";
 
 export default function Task({
   projects,
@@ -20,15 +22,22 @@ export default function Task({
     handleNote(data.note, id);
   }
 
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useLocalStorageState(250);
   const router = useRouter();
   const { id } = router.query;
+  const selectedProject = projects.find((project) => project.id === id);
   const { isReady } = router;
   if (!isReady) {
     return <div>project is loading ..</div>;
   }
-
-  const selectedProject = projects.find((project) => project.id === id);
+  if (!selectedProject) {
+    return (
+      <>
+        <p>404</p>
+        <Link href="/">Go back to your projects</Link>
+      </>
+    );
+  }
 
   return (
     <>
