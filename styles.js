@@ -9,7 +9,7 @@ export default createGlobalStyle`
 
   body {
     margin: 0;
-    font-family: system-ui;
-    background-color: #C0C9CC;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #fff;
   }
 `;
