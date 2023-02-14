@@ -202,9 +202,9 @@ const StyledList = styled.ul`
 
 const TaskItem = styled.li`
   display: flex;
-  position: absolute;
+  position: relative;
   background-color: #94c3dd;
-  color: white;
+  color: #696969;
   width: 90%;
   margin: 5px;
   padding: 6px;
@@ -214,7 +214,42 @@ const TaskItem = styled.li`
   overflow: hidden;
 `;
 
-const Checkbox = styled.input``;
+const Checkbox = styled.input`
+  position: absolute;
+  top: 0.35em;
+  right: 3.5em;
+  appearance: none;
+  width: 3em;
+  height: 1.3em;
+  border-radius: 9px;
+  border: 2px solid;
+  border: none;
+  background-color: #efefef;
+  outline: none;
+  box-shadow: 0 4px 14px 0 rgb(0 0 0 / 15%);
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 1.3em;
+    height: 1.3em;
+    border-radius: 50%;
+    background-color: #fff;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  &:checked {
+    background-color: #61ff00;
+  }
+
+  &:checked::before {
+    transform: translateX(1.75em);
+  }
+
+  &:checked + label {
+    text-decoration: line-through;
+  }
+`;
 
 const DeleteButton = styled.button`
   position: absolute;

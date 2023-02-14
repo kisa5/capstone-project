@@ -123,7 +123,7 @@ const StyledList = styled.ul`
 
 const ProjectItem = styled.li`
   display: flex;
-  position: absolute;
+  position: relative;
   background-color: #94c3dd;
   width: 80%;
   margin: 5px;
