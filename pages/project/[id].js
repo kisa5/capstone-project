@@ -68,7 +68,10 @@ export default function Task({
       <Header>
         <AppName>PlanMaster</AppName>
         <BackButton>
-          <Link href="/" style={{ textDecoration: "none", color: "white" }}>
+          <Link
+            href="/ProjectPage"
+            style={{ textDecoration: "none", color: "white" }}
+          >
             {" "}
             back{" "}
           </Link>
