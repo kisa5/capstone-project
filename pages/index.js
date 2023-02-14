@@ -1,6 +1,5 @@
 import { useState } from "react";
 import styled from "styled-components";
-import Link from "next/Link";
 import Logo from "@/public/Logo.svg";
 
 export default function HomePage({}) {
@@ -14,14 +13,14 @@ export default function HomePage({}) {
       <PageWrapper>
         <Wrapper>
           <Logo />
-          <Link
+          <a
             href={`/ProjectPage`}
             style={{ textDecoration: "none", color: "#94c3dd" }}
           >
             <StyledDiv onClick={handleClick} isClicked={isClicked}>
               Welcome
             </StyledDiv>
-          </Link>
+          </a>
         </Wrapper>
       </PageWrapper>
     </>
