@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import useLocalStorageState from "use-local-storage-state";
 import styled from "styled-components";
@@ -7,6 +8,7 @@ import TaskForm from "@/components/TaskForm";
 import Counter from "@/components/Counter";
 import DeleteIcon from "@/public/DeleteIcon.svg";
 import PlusIcon from "@/public/PlusIcon.svg";
+import LoadingDots from "@/components/LoadingDots";
 
 export default function Task({
   projects,
@@ -23,14 +25,24 @@ export default function Task({
     handleNote(data.note, id);
   }
 
+  const [isLoading, setIsLoading] = useState(true);
   const [count, setCount] = useLocalStorageState(250);
   const router = useRouter();
   const { id } = router.query;
   const selectedProject = projects.find((project) => project.id === id);
   const { isReady } = router;
-  if (!isReady) {
-    return <div>project is loading ..</div>;
+  useEffect(() => {
+    setTimeout(() => setIsLoading(false), 2000);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <>
+        <LoadingDots />
+      </>
+    );
   }
+
   if (!selectedProject) {
     return (
       <>
