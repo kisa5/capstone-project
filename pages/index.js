@@ -1,10 +1,10 @@
 // import external resources
-import useLocalStorageState from "use-local-storage-state";
 import styled from "styled-components";
 // import internal resources
 import ProjectList from "@/components/ProjectList";
 import PlusIcon from "@/public/PlusIcon.svg";
 import ProjectForm from "@/components/ProjectForm";
+import Logo from "@/public/Logo.svg";
 
 export default function HomePage({
   addProject,

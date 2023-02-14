@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import dynamic from "next/dynamic";
 import SearchIcon from "@/public/SearchIcon.svg";
+import DeleteIcon from "@/public/DeleteIcon.svg";
 
 const ModalDeleteProject = dynamic(
   () => import("@/components/ModalDeleteProject"),
@@ -42,12 +42,17 @@ export default function ProjectList({ projects, handleDeleteProject }) {
             })
             .map((project, index) => (
               <ProjectItem key={index}>
-                <Link href={`/project/${project.id}`}>{project.title}</Link>
+                <Link
+                  href={`/project/${project.id}`}
+                  style={{ textDecoration: "none", color: "white" }}
+                >
+                  {project.title}
+                </Link>
                 <DeleteButton
                   type="button"
                   onClick={() => setProjectToDelete(project.id)}
                 >
-                  -
+                  <DeleteIcon />
                 </DeleteButton>
               </ProjectItem>
             ))}
@@ -102,15 +107,14 @@ const SearchInput = styled.input`
 
 const ProjectWrapper = styled.div`
   position: fixed;
-  top: 15em;
-  bottom: 3.5em;
+  top: 12em;
+  bottom: 4em;
   overflow: scroll;
   width: 100%;
 `;
 
 const StyledList = styled.ul`
   display: flex;
-  position: relative;
   flex-direction: column;
   align-items: center;
   padding: 0;
@@ -118,10 +122,12 @@ const StyledList = styled.ul`
 `;
 
 const ProjectItem = styled.li`
-  background-color: #fff;
+  display: flex;
+  position: absolute;
+  background-color: #94c3dd;
   width: 80%;
-  padding: 8px;
   margin: 5px;
+  padding: 6px;
   list-style: none;
   word-wrap: break-word;
   border-radius: 0.3rem;
@@ -129,10 +135,11 @@ const ProjectItem = styled.li`
 `;
 
 const DeleteButton = styled.button`
+  position: absolute;
+  top: 0.2em;
+  right: 1em;
   border: none;
-  font-weight: 600;
-  border-radius: 50px;
-  font-size: 13px;
-  height: 25px;
-  width: 30px;
+  height: 2em;
+  width: 2em;
+  background-color: inherit;
 `;
