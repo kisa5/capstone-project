@@ -5,7 +5,11 @@ import ProjectList from "@/components/ProjectList";
 import PlusIcon from "@/public/PlusIcon.svg";
 import ProjectForm from "@/components/ProjectForm";
 
-export default function Home({ addProject, projects, handleDeleteProject }) {
+export default function ProjectPage({
+  addProject,
+  projects,
+  handleDeleteProject,
+}) {
   return (
     <>
       <Header>
