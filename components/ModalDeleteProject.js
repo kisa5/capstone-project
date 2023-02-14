@@ -15,8 +15,8 @@ export default function ModalDelete({
       <StyledCard>
         <Question>Do you really want to delete your project?</Question>
         <Wrapper>
-          <StyledButton onClick={handleClose}>No</StyledButton>
-          <StyledButton onClick={deleteAndClose}>Yes</StyledButton>
+          <NoButton onClick={handleClose}>No</NoButton>
+          <YesButton onClick={deleteAndClose}>Yes</YesButton>
         </Wrapper>
       </StyledCard>
     </Modal>
@@ -37,7 +37,7 @@ const StyledCard = styled.div`
 const Question = styled.h1`
   text-align: center;
   font-size: 18px;
-  color: #212121;
+  color: #696969;
 `;
 
 const Wrapper = styled.div`
@@ -45,7 +45,7 @@ const Wrapper = styled.div`
   gap: 20px;
 `;
 
-const StyledButton = styled.button`
+const YesButton = styled.button`
   display: inline-block;
   outline: 0;
   cursor: pointer;
@@ -53,11 +53,28 @@ const StyledButton = styled.button`
   padding: 0 56px;
   height: 45px;
   line-height: 45px;
-  border-radius: 7px;
+  border-radius: 20px;
+  font-weight: 400;
+  font-size: 16px;
+  background: #94c3dd;
+  color: #fff;
+  box-shadow: 0 4px 14px 0 rgb(0 0 0 / 10%);
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+`;
+
+const NoButton = styled.button`
+  display: inline-block;
+  outline: 0;
+  cursor: pointer;
+  border: none;
+  padding: 0 56px;
+  height: 45px;
+  line-height: 45px;
+  border-radius: 20px;
   font-weight: 400;
   font-size: 16px;
   background: #fff;
-  color: #696969;
+  color: #94c3dd;
   box-shadow: 0 4px 14px 0 rgb(0 0 0 / 10%);
   transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 `;

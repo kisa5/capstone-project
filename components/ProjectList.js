@@ -44,7 +44,7 @@ export default function ProjectList({ projects, handleDeleteProject }) {
               <ProjectItem key={index}>
                 <Link
                   href={`/project/${project.id}`}
-                  style={{ textDecoration: "none", color: "white" }}
+                  style={{ textDecoration: "none", color: "#696969" }}
                 >
                   {project.title}
                 </Link>
