@@ -20,7 +20,6 @@ export default function ProjectList({ projects, handleDeleteProject }) {
     <Wrapper>
       <SearchWrapper>
         <StyledSearchIcon />
-        <InvisibleLabel htmlFor="search">search</InvisibleLabel>
         <SearchInput
           type="text"
           placeholder="search"
@@ -144,11 +143,4 @@ const DeleteButton = styled.button`
   height: 2em;
   width: 2em;
   background-color: inherit;
-`;
-
-const InvisibleLabel = styled.label`
-  left: -9999px;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
 `;
