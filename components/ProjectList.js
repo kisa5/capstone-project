@@ -108,8 +108,8 @@ const SearchInput = styled.input`
 
 const ProjectWrapper = styled.div`
   position: fixed;
-  top: 12em;
-  bottom: 4em;
+  top: 12.8em;
+  bottom: 4.7em;
   overflow: scroll;
   width: 100%;
 `;
