@@ -86,6 +86,7 @@ export default function Task({
                 />
                 <label>{task.task}</label>
                 <DeleteButton
+                  aria-label="delete-button"
                   type="button"
                   onClick={() => {
                     handleDeleteTask(task.id, id);

@@ -1,13 +1,8 @@
-import { useState } from "react";
 import styled from "styled-components";
 import Logo from "@/public/Logo.svg";
+import Link from "next/link";
 
 export default function HomePage({}) {
-  const [isClicked, setIsClicked] = useState(false);
-
-  function handleClick() {
-    setIsClicked(!isClicked);
-  }
   return (
     <>
       <PageWrapper>
@@ -16,8 +11,6 @@ export default function HomePage({}) {
           <StyledLink
             href={`/ProjectPage`}
             style={{ textDecoration: "none", color: "#94c3dd" }}
-            onClick={handleClick}
-            isClicked={isClicked}
           >
             Welcome
           </StyledLink>
@@ -40,7 +33,7 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
 `;
-const StyledLink = styled.a`
+const StyledLink = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;

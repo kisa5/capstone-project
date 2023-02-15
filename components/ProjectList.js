@@ -49,6 +49,7 @@ export default function ProjectList({ projects, handleDeleteProject }) {
                   {project.title}
                 </Link>
                 <DeleteButton
+                  aria-label="delete-button"
                   type="button"
                   onClick={() => setProjectToDelete(project.id)}
                 >
