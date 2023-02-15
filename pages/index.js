@@ -1,43 +1,46 @@
-// import external resources
-import useLocalStorageState from "use-local-storage-state";
 import styled from "styled-components";
-// import internal resources
-import ProjectList from "@/components/ProjectList";
-import Logo from "@/components/svg/Logo.svg";
-import ProjectForm from "@/components/ProjectForm";
+import Logo from "@/public/Logo.svg";
+import Link from "next/link";
 
-export default function HomePage({
-  addProject,
-  projects,
-  handleDeleteProject,
-}) {
+export default function HomePage({}) {
   return (
     <>
-      <Header>
-        <Title>my projects</Title>
-      </Header>
-
-      <ProjectList
-        projects={projects}
-        handleDeleteProject={handleDeleteProject}
-      />
-
-      <ProjectForm addProject={addProject} />
+      <PageWrapper>
+        <Wrapper>
+          <Logo />
+          <StyledLink
+            href={`/ProjectPage`}
+            style={{ textDecoration: "none", color: "#94c3dd" }}
+          >
+            Welcome
+          </StyledLink>
+        </Wrapper>
+      </PageWrapper>
     </>
   );
 }
-
-const Header = styled.header`
+const PageWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  padding: 10px;
+  justify-content: center;
   align-items: center;
+  height: 100vh;
+  background-color: #94c3dd;
 `;
 
-const Title = styled.h1`
-  position: absolute;
-  top: 20px;
-  font-style: bold;
-  font-size: 17px;
-  color: #494b49;
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+const StyledLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.2em;
+  width: 7em;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 14px 0 rgb(0 0 0 / 15%);
+  background-color: ${(props) => (props.isClicked ? "#ccc" : "#fff")};
 `;

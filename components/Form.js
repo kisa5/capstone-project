@@ -3,12 +3,12 @@ import styled from "styled-components";
 import { useState } from "react";
 import Counter from "./Counter";
 
-export default function Form({ onSubmit, name, placeholder }) {
+export default function Form({ onSubmit, name, placeholder, label }) {
   const id = useId();
   const [count, setCount] = useState(0);
   return (
     <StyledForm onSubmit={onSubmit}>
-      <label htmlFor={id}></label>
+      <InvisibleLabel htmlFor={id}>{label}</InvisibleLabel>
       <Input
         id={id}
         type="text"
@@ -16,12 +16,13 @@ export default function Form({ onSubmit, name, placeholder }) {
         name={name}
         placeholder={placeholder}
         onChange={(event) => setCount(event.target.value.length)}
+        autoComplete="off"
         required
       />
       <CounterWrapper>
         <Counter maxLength={30} counter={count} />
       </CounterWrapper>
-      <SubmitButton type="submit">+</SubmitButton>
+      <SubmitButton type="submit">add</SubmitButton>
     </StyledForm>
   );
 }
@@ -29,44 +30,58 @@ export default function Form({ onSubmit, name, placeholder }) {
 const StyledForm = styled.form`
   display: flex;
   position: fixed;
-  bottom: 5px;
+  bottom: 3.5em;
   width: 100%;
   flex-direction: column;
-  align-items: center;
   margin: 0;
   padding: 0;
 `;
 
 const Input = styled.input`
-  width: 85%;
-  margin: 5px;
-  padding: 10px;
+  position: absolute;
+  left: 1em;
   border-radius: 7px;
   border: 1px solid grey;
   font-size: 15px;
+  width: 80%;
+  margin: 5px;
+  padding: 5px;
+  color: #696969;
+  border: 2.5px solid #94c3dd;
+  box-shadow: 0 4px 14px 0 rgb(0 0 0 / 20%);
   word-wrap: break-word;
   word-break: break-all;
-  border: none;
-  font-size: 14px;
-  color: #696969;
-  box-shadow: 0 4px 14px 0 rgb(0 0 0 / 10%);
+  &:focus {
+    border: 3px solid #94c3dd;
+    outline: transparent;
+    box-shadow: 0 4px 14px 0 rgb(0 0 0 / 40%);
+  }
+`;
+
+const InvisibleLabel = styled.label`
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 `;
 
 const CounterWrapper = styled.div`
   position: absolute;
-  top: 12%;
-  right: 21%;
-  justify-content: center;
+  top: 0.3em;
+  right: 6em;
 `;
 const SubmitButton = styled.button`
   position: absolute;
-  top: 25%;
-  right: 11%;
+  right: 1em;
   border: none;
-  height: 25px;
-  width: 35px;
   font-weight: 400;
   font-size: 20px;
-  background-color: white;
-  color: #696969;
+  background-color: #94c3dd;
+  color: white;
+  font-size: 14px;
+  width: 4.5em;
+  margin: 5px;
+  padding: 8px;
+  border-top-right-radius: 7px;
+  border-bottom-right-radius: 7px;
 `;

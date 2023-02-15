@@ -20,6 +20,11 @@ export default function ProjectForm({ addProject }) {
   }
 
   return (
-    <Form onSubmit={handleSubmit} name="title" placeholder="add your project" />
+    <Form
+      onSubmit={handleSubmit}
+      name="title"
+      placeholder="add your project"
+      label="project"
+    />
   );
 }

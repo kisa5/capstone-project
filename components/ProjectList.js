@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import dynamic from "next/dynamic";
+import SearchIcon from "@/public/SearchIcon.svg";
+import DeleteIcon from "@/public/DeleteIcon.svg";
 
 const ModalDeleteProject = dynamic(
   () => import("@/components/ModalDeleteProject"),
@@ -17,13 +18,16 @@ export default function ProjectList({ projects, handleDeleteProject }) {
 
   return (
     <Wrapper>
-      <SearchInput
-        type="text"
-        placeholder="search"
-        onChange={(event) => {
-          setSearchTerm(event.target.value);
-        }}
-      />
+      <SearchWrapper>
+        <StyledSearchIcon />
+        <SearchInput
+          type="text"
+          placeholder="search"
+          onChange={(event) => {
+            setSearchTerm(event.target.value);
+          }}
+        />
+      </SearchWrapper>
       <ProjectWrapper>
         <StyledList>
           {projects
@@ -38,12 +42,18 @@ export default function ProjectList({ projects, handleDeleteProject }) {
             })
             .map((project, index) => (
               <ProjectItem key={index}>
-                <Link href={`/project/${project.id}`}>{project.title}</Link>
+                <Link
+                  href={`/project/${project.id}`}
+                  style={{ textDecoration: "none", color: "#696969" }}
+                >
+                  {project.title}
+                </Link>
                 <DeleteButton
+                  aria-label="delete-button"
                   type="button"
                   onClick={() => setProjectToDelete(project.id)}
                 >
-                  -
+                  <DeleteIcon />
                 </DeleteButton>
               </ProjectItem>
             ))}
@@ -66,34 +76,46 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
-const SearchInput = styled.input`
+const SearchWrapper = styled.div`
   position: fixed;
-  top: 5em;
+  top: 10em;
   width: 85%;
   margin: 5px;
-  padding: 10px;
+  padding: 4px;
   border-radius: 7px;
-  border: 1px solid grey;
+  border: 2.5px solid #94c3dd;
+  box-shadow: 0 4px 14px 0 rgb(0 0 0 / 18%);
+`;
+
+const StyledSearchIcon = styled(SearchIcon)`
+  position: absolute;
+  top: 0.4em;
+`;
+const SearchInput = styled.input`
+  width: 95%;
+  margin-left: 1em;
   font-size: 15px;
   word-wrap: break-word;
   word-break: break-all;
-  border: none;
   font-size: 14px;
   color: #696969;
-  box-shadow: 0 4px 14px 0 rgb(0 0 0 / 10%);
+  border: none;
+  &:focus {
+    border-color: none;
+    outline: none;
+  }
 `;
 
 const ProjectWrapper = styled.div`
   position: fixed;
-  top: 6.5em;
-  bottom: 3.5em;
+  top: 12.8em;
+  bottom: 4.7em;
   overflow: scroll;
   width: 100%;
 `;
 
 const StyledList = styled.ul`
   display: flex;
-  position: relative;
   flex-direction: column;
   align-items: center;
   padding: 0;
@@ -101,10 +123,12 @@ const StyledList = styled.ul`
 `;
 
 const ProjectItem = styled.li`
-  background-color: #fff;
+  display: flex;
+  position: relative;
+  background-color: #94c3dd;
   width: 80%;
-  padding: 8px;
   margin: 5px;
+  padding: 6px;
   list-style: none;
   word-wrap: break-word;
   border-radius: 0.3rem;
@@ -112,10 +136,11 @@ const ProjectItem = styled.li`
 `;
 
 const DeleteButton = styled.button`
+  position: absolute;
+  top: 0.2em;
+  right: 1em;
   border: none;
-  font-weight: 600;
-  border-radius: 50px;
-  font-size: 13px;
-  height: 25px;
-  width: 30px;
+  height: 2em;
+  width: 2em;
+  background-color: inherit;
 `;

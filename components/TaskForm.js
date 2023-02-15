@@ -14,6 +14,11 @@ export default function TaskForm({ onHandleAddTask, projectid }) {
   }
 
   return (
-    <Form onSubmit={handleSubmit} name="task" placeholder="add your task" />
+    <Form
+      onSubmit={handleSubmit}
+      name="task"
+      placeholder="add your task"
+      label="task"
+    />
   );
 }
