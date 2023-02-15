@@ -13,14 +13,14 @@ export default function HomePage({}) {
       <PageWrapper>
         <Wrapper>
           <Logo />
-          <a
+          <StyledLink
             href={`/ProjectPage`}
             style={{ textDecoration: "none", color: "#94c3dd" }}
+            onClick={handleClick}
+            isClicked={isClicked}
           >
-            <StyledDiv onClick={handleClick} isClicked={isClicked}>
-              Welcome
-            </StyledDiv>
-          </a>
+            Welcome
+          </StyledLink>
         </Wrapper>
       </PageWrapper>
     </>
@@ -40,7 +40,7 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
 `;
-const StyledDiv = styled.div`
+const StyledLink = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;

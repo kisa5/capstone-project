@@ -3,12 +3,12 @@ import styled from "styled-components";
 import { useState } from "react";
 import Counter from "./Counter";
 
-export default function Form({ onSubmit, name, placeholder }) {
+export default function Form({ onSubmit, name, placeholder, label }) {
   const id = useId();
   const [count, setCount] = useState(0);
   return (
     <StyledForm onSubmit={onSubmit}>
-      <label htmlFor={id}></label>
+      <InvisibleLabel htmlFor={id}>{label}</InvisibleLabel>
       <Input
         id={id}
         type="text"
@@ -53,16 +53,22 @@ const Input = styled.input`
   word-break: break-all;
   &:focus {
     border: 3px solid #94c3dd;
-    outline: none;
+    outline: transparent;
     box-shadow: 0 4px 14px 0 rgb(0 0 0 / 40%);
   }
+`;
+
+const InvisibleLabel = styled.label`
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 `;
 
 const CounterWrapper = styled.div`
   position: absolute;
   top: 0.3em;
   right: 6em;
-  justify-content: center;
 `;
 const SubmitButton = styled.button`
   position: absolute;

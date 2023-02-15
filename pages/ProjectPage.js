@@ -1,6 +1,4 @@
-// import external resources
 import styled from "styled-components";
-// import internal resources
 import ProjectList from "@/components/ProjectList";
 import PlusIcon from "@/public/PlusIcon.svg";
 import ProjectForm from "@/components/ProjectForm";

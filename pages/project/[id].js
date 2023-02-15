@@ -36,11 +36,7 @@ export default function Task({
   }, []);
 
   if (isLoading) {
-    return (
-      <>
-        <LoadingDots />
-      </>
-    );
+    return <LoadingDots />;
   }
 
   if (!selectedProject) {
@@ -67,7 +63,7 @@ export default function Task({
     <>
       <Header>
         <AppName>PlanMaster</AppName>
-        <BackButton>
+        <BackLink>
           <Link
             href="/ProjectPage"
             style={{ textDecoration: "none", color: "white" }}
@@ -75,7 +71,7 @@ export default function Task({
             {" "}
             back{" "}
           </Link>
-        </BackButton>
+        </BackLink>
         <Title>{selectedProject.title}</Title>
       </Header>
       <Wrapper>
@@ -164,7 +160,7 @@ const AppName = styled.h1`
   left: 0.7em;
 `;
 
-const BackButton = styled.div`
+const BackLink = styled.div`
   position: fixed;
   right: 1em;
   top: 1em;
@@ -310,7 +306,7 @@ const Textarea = styled.textarea`
   }
   &:focus {
     border: 3px solid #94c3dd;
-    outline: none;
+    outline: transparent;
     box-shadow: 0 3px 14px 0 rgb(0 0 0 / 40%);
   }
 `;
